@@ -30,10 +30,26 @@ body {
   font-size: 2.5rem;
 }
 
+.buttons-container {
+  display: flex;
+}
+
 .start-button {
   padding: 10px 20px;
   font-size: 1.2rem;
-  background-color: gray;
+  font-family: "Quicksand", sans-serif;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.config-button {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  font-family: "Quicksand", sans-serif;
+  background-color: red;
   color: white;
   border: none;
   border-radius: 8px;
