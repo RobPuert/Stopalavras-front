@@ -19,11 +19,19 @@
         <button (click)="onClickCronometro()" class="botao-cronometro">Cronômetro</button>
       </div>
       <div>
-        <button class="botao-temas">Temas</button>
+        <button (click)="onClickTemas()" class="botao-temas">Temas</button>
       </div>
     </div>
     <div *ngIf="tempo !== null" class="exibicao-cronometro">
       Tempo do cronômetro: <strong>{{ tempo }} segundos</strong>
+    </div>
+    <div *ngIf="temas.length > 0" class="exibicao-tema">
+      Temas cadastrados:
+        <ol>
+          <li *ngFor="let tema of temas">
+            <strong>{{ tema }}</strong>
+          </li>
+        </ol>
     </div>
   </div>
 </body>

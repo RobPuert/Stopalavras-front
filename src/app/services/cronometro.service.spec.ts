@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CronometroService } from './cronometro.service';
+import { CronometroService } from './configuracoes.service';
 
 describe('CronometroService', () => {
   let service: CronometroService;

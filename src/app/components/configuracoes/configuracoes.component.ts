@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink} from '@angular/router';
-import { CronometroService } from '../../services/cronometro.service';
+import { CronometroService } from '../../services/configuracoes.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,6 +11,8 @@ import { CommonModule } from '@angular/common';
 })
 export class ConfiguracoesComponent {
   tempo: number | null = null;
+  temas: string[] = [];
+
   constructor(private cronometroService: CronometroService) {}
 
   onClickCronometro() {
@@ -21,6 +23,22 @@ export class ConfiguracoesComponent {
         if (Array.isArray(res) && res.length > 0 && 'segundos' in res[0]) {
           this.tempo = res[0].segundos;
         }
+      },
+      error: (err) => console.error('Erro na API:', err),
+    });
+  };
+
+  onClickTemas() {
+    this.cronometroService.chamarTemas().subscribe({
+      next: (res) => {
+        console.log('Resposta da API:', res);
+        this.temas = [];
+        // Espera-se um array com varios objetos contendo 'id' e 'titulo'
+        if (Array.isArray(res) && res.length > 0) {
+          res.forEach(element => {
+              this.temas?.push(element.titulo);
+          });
+        }console.log(this.temas);
       },
       error: (err) => console.error('Erro na API:', err),
     });
