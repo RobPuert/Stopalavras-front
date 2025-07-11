@@ -6,11 +6,15 @@ import { Observable } from 'rxjs';
   providedIn: 'root', // isso torna o serviço disponível sem precisar importar em um módulo
 })
 export class CronometroService {
-  private apiUrl = 'https://localhost:7164/api/Cronometro';
+  private apiUrl = 'https://localhost:7164/api/';
 
   constructor(private http: HttpClient) {}
 
   chamarCronometro(): Observable<any> {
-    return this.http.get(this.apiUrl);
+    return this.http.get(this.apiUrl + 'Cronometro');
+  }
+
+  chamarTemas(): Observable<any> {
+    return this.http.get(this.apiUrl + 'Tema');
   }
 }
