@@ -16,11 +16,14 @@
     </div>
     <div class="buttons-container">
       <div>
-        <button class="start-button">Cronômetro</button>
+        <button (click)="onClickCronometro()" class="botao-cronometro">Cronômetro</button>
       </div>
       <div>
-        <button class="config-button">Temas</button>
+        <button class="botao-temas">Temas</button>
       </div>
+    </div>
+    <div *ngIf="tempo !== null" class="exibicao-cronometro">
+      Tempo do cronômetro: <strong>{{ tempo }} segundos</strong>
     </div>
   </div>
 </body>
