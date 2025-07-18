@@ -9,36 +9,57 @@
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
+  <section class="container">
     <div class="top-content">
       <img routerLink="/home" src="assets/images/stop_sign.png" alt="Placa de Stop" class="stop-sign">
       <h1 class="title">Stopalavras</h1>
     </div>
-  </div>
-  <div class="buttons-container">
+  </section>
+  <section class="buttons-container">
     <div>
       <button (click)="onClickCronometro()" class="botao-cronometro">Cronômetro</button>
     </div>
     <div>
-      <button class="botao-temas">Definir Cronômetro</button>
+      <button class="botao-definir">Definir Cronômetro</button>
     </div>
     <div>
       <button (click)="onClickTemas()" class="botao-temas">Temas</button>
     </div>
     <div>
-      <button class="botao-temas">Cadastrar Tema</button>
+      <button class="botao-definir">Cadastrar Tema</button>
     </div>
-  </div>
-  <div *ngIf="tempo !== null" class="exibicao-cronometro">
-    Tempo do cronômetro: <strong>{{ tempo }} segundos</strong>
-  </div>
-  <div *ngIf="temas.length > 0" class="exibicao-tema">
-    Temas cadastrados:
-      <ol>
-        <li *ngFor="let tema of temas">
-          <strong>{{ tema }}</strong>
-        </li>
-      </ol>
-  </div>
+  </section>
+  <section class="colunas">
+    <div *ngIf="tempo !== null" class="exibicao-cronometro">
+      Tempo do cronômetro: <strong>{{ tempo }} segundos</strong>
+    </div>
+    <div class="form">
+      <form (ngSubmit)="salvar()">
+        <label for="segundos">Segundos: </label>
+        <br><br>
+        <input required id="segundos" [(ngModel)]="segundos" type="number" name="segundos" placeholder="Digite um número inteiro">
+        <br><br>
+        <button type="submit" class="botao-salvar">Salvar</button>
+      </form>
+      <p *ngIf="mensagem">{{ mensagem }}</p>
+    </div>
+    <div *ngIf="temas.length > 0" class="exibicao-tema">
+      Temas cadastrados:
+        <ol>
+          <li *ngFor="let tema of temas">
+            <strong>{{ tema }}</strong>
+          </li>
+        </ol>
+    </div>
+    <div class="form">
+      <form><!-- <form action="{% url 'search_results' %}" method="post"> -->
+        <label for="search_field">Digite um tema: </label>
+        <br><br>
+        <input required id="criar-tema" type="text" name="criar-tema" placeholder="Evite temas já existentes">
+        <br><br>
+        <button class="botao-salvar">Salvar</button>
+      </form>
+    </div>
+  </section>
 </body>
 </html>

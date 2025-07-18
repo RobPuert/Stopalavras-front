@@ -2,10 +2,12 @@ import { Component } from '@angular/core';
 import { RouterLink} from '@angular/router';
 import { CronometroService } from '../../services/configuracoes.service';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-configuracoes',
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, FormsModule],
   templateUrl: './configuracoes.component.html',
   styleUrl: './configuracoes.component.css'
 })
@@ -42,5 +44,19 @@ export class ConfiguracoesComponent {
       },
       error: (err) => console.error('Erro na API:', err),
     });
+  }
+
+  segundos: number = 0;
+  mensagem: string = '';
+  salvar() {
+    this.cronometroService.definirCronometro(this.segundos).subscribe({
+        next: (res: any) => {
+          this.mensagem = res.mensagem || 'Atualizado com sucesso!';
+        },
+        error: (err) => {
+          console.error(err);
+          this.mensagem = 'Erro ao atualizar cronômetro.';
+        }
+      });
   }
 }
