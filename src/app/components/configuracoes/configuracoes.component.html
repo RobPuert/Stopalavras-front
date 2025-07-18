@@ -14,25 +14,31 @@
       <img routerLink="/home" src="assets/images/stop_sign.png" alt="Placa de Stop" class="stop-sign">
       <h1 class="title">Stopalavras</h1>
     </div>
-    <div class="buttons-container">
-      <div>
-        <button (click)="onClickCronometro()" class="botao-cronometro">Cronômetro</button>
-      </div>
-      <div>
-        <button (click)="onClickTemas()" class="botao-temas">Temas</button>
-      </div>
+  </div>
+  <div class="buttons-container">
+    <div>
+      <button (click)="onClickCronometro()" class="botao-cronometro">Cronômetro</button>
     </div>
-    <div *ngIf="tempo !== null" class="exibicao-cronometro">
-      Tempo do cronômetro: <strong>{{ tempo }} segundos</strong>
+    <div>
+      <button class="botao-temas">Definir Cronômetro</button>
     </div>
-    <div *ngIf="temas.length > 0" class="exibicao-tema">
-      Temas cadastrados:
-        <ol>
-          <li *ngFor="let tema of temas">
-            <strong>{{ tema }}</strong>
-          </li>
-        </ol>
+    <div>
+      <button (click)="onClickTemas()" class="botao-temas">Temas</button>
     </div>
+    <div>
+      <button class="botao-temas">Cadastrar Tema</button>
+    </div>
+  </div>
+  <div *ngIf="tempo !== null" class="exibicao-cronometro">
+    Tempo do cronômetro: <strong>{{ tempo }} segundos</strong>
+  </div>
+  <div *ngIf="temas.length > 0" class="exibicao-tema">
+    Temas cadastrados:
+      <ol>
+        <li *ngFor="let tema of temas">
+          <strong>{{ tema }}</strong>
+        </li>
+      </ol>
   </div>
 </body>
 </html>
