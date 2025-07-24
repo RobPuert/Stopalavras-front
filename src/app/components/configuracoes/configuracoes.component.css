@@ -92,16 +92,24 @@ body {
 
 .colunas{
   display: grid;
-  grid-template-columns: 1.5fr 1.5fr 1.5fr 1.5fr;
+  grid-template-columns: repeat(4, minmax(0, 1.5fr));
   position: absolute;
 }
 
 .exibicao-cronometro {
   color: white;
   font-size: 1.2rem;
+  float: inline-start;
+  margin-left: 30px;
 }
 
 .exibicao-tema {
   color: white;
   font-size: 1.2rem;
+  float: inline-start;
+  margin-left: 240px;
+}
+
+.form {
+  margin-left: 155px;
 }

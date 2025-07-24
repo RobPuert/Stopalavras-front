@@ -20,7 +20,11 @@ export class CronometroService {
 
   definirCronometro(segundos: number): Observable<any> {
     var objeto = {"segundos":segundos}
-    console.log(objeto);
     return this.http.put(this.apiUrl + 'Cronometro', objeto);
+  }
+
+  inserirTema(id: number, titulo: string): Observable<any> {
+    var objeto = {"id":id, "titulo": titulo}
+    return this.http.post(this.apiUrl + 'Tema', objeto);
   }
 }

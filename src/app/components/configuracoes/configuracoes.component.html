@@ -18,47 +18,45 @@
   <section class="buttons-container">
     <div>
       <button (click)="onClickCronometro()" class="botao-cronometro">Cronômetro</button>
+      <div *ngIf="tempo !== null" class="exibicao-cronometro">
+        Tempo do cronômetro: <strong>{{ tempo }} segundos</strong>
+      </div>
     </div>
     <div>
       <button class="botao-definir">Definir Cronômetro</button>
+      <div class="form">
+        <form (ngSubmit)="salvar()">
+          <label for="segundos">Segundos: </label>
+          <br><br>
+          <input required id="segundos" [(ngModel)]="segundos" type="number" name="segundos" placeholder="Digite um número inteiro">
+          <br><br>
+          <button type="submit" class="botao-salvar">Salvar</button>
+        </form>
+        <p *ngIf="mensagem">{{ mensagem }}</p>
+      </div>
     </div>
     <div>
       <button (click)="onClickTemas()" class="botao-temas">Temas</button>
-    </div>
-    <div>
-      <button class="botao-definir">Cadastrar Tema</button>
-    </div>
-  </section>
-  <section class="colunas">
-    <div *ngIf="tempo !== null" class="exibicao-cronometro">
-      Tempo do cronômetro: <strong>{{ tempo }} segundos</strong>
-    </div>
-    <div class="form">
-      <form (ngSubmit)="salvar()">
-        <label for="segundos">Segundos: </label>
-        <br><br>
-        <input required id="segundos" [(ngModel)]="segundos" type="number" name="segundos" placeholder="Digite um número inteiro">
-        <br><br>
-        <button type="submit" class="botao-salvar">Salvar</button>
-      </form>
-      <p *ngIf="mensagem">{{ mensagem }}</p>
-    </div>
-    <div *ngIf="temas.length > 0" class="exibicao-tema">
-      Temas cadastrados:
-        <ol>
-          <li *ngFor="let tema of temas">
-            <strong>{{ tema }}</strong>
-          </li>
-        </ol>
-    </div>
-    <div class="form">
-      <form><!-- <form action="{% url 'search_results' %}" method="post"> -->
-        <label for="search_field">Digite um tema: </label>
-        <br><br>
-        <input required id="criar-tema" type="text" name="criar-tema" placeholder="Evite temas já existentes">
-        <br><br>
-        <button class="botao-salvar">Salvar</button>
-      </form>
+      <div *ngIf="temas.length > 0" class="exibicao-tema">
+        Temas cadastrados:
+          <ol>
+            <li *ngFor="let tema of temas">
+              <strong>{{ tema }}</strong>
+            </li>
+          </ol>
+        </div>
+      </div>
+      <div>
+        <button class="botao-definir">Cadastrar Tema</button>
+        <div class="form">
+          <form (ngSubmit)="salvarTema()">
+            <label for="search_field">Digite um tema: </label>
+            <br><br>
+            <input required id="criar-tema" [(ngModel)]="titulo" type="text" name="criar-tema" placeholder="Evite temas já existentes">
+            <br><br>
+            <button class="botao-salvar">Salvar</button>
+          </form>
+        </div>
     </div>
   </section>
 </body>
