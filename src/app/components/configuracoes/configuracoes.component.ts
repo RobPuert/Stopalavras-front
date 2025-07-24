@@ -50,13 +50,16 @@ export class ConfiguracoesComponent {
   mensagem: string = '';
   salvar() {
     this.cronometroService.definirCronometro(this.segundos).subscribe({
-        next: (res: any) => {
-          this.mensagem = res.mensagem || 'Atualizado com sucesso!';
-        },
-        error: (err) => {
-          console.error(err);
-          this.mensagem = 'Erro ao atualizar cronômetro.';
-        }
-      });
+    });
+    this.segundos = 0;
+  }
+
+  id: number = 0;
+  titulo: string = '';
+  mensagemTema: string = '';
+  salvarTema() {
+    this.cronometroService.inserirTema(this.segundos, this.titulo).subscribe({
+    });
+    this.titulo = '';
   }
 }
