@@ -3,11 +3,12 @@ import { RouterLink} from '@angular/router';
 import { CronometroService } from '../../services/configuracoes.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @Component({
   selector: 'app-configuracoes',
-  imports: [RouterLink, CommonModule, FormsModule],
+  imports: [RouterLink, CommonModule, FormsModule, MatIconModule],
   templateUrl: './configuracoes.component.html',
   styleUrl: './configuracoes.component.css'
 })
@@ -40,7 +41,7 @@ export class ConfiguracoesComponent {
           res.forEach(element => {
               this.temas?.push(element.titulo);
           });
-        }console.log(this.temas);
+        };
       },
       error: (err) => console.error('Erro na API:', err),
     });
@@ -62,4 +63,12 @@ export class ConfiguracoesComponent {
     });
     this.titulo = '';
   }
+
+  // deletarTema() {  this.cronometroService.deletarTema(this.id).subscribe({
+  //     next: (res) => {
+  //       console.log(this.id);
+  //     },
+  //     error: (err) => console.error('Erro na API:', err),
+  //   });
+  // }
 }
