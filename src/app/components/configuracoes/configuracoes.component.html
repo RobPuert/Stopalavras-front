@@ -41,7 +41,11 @@
         Temas cadastrados:
           <ol>
             <li *ngFor="let tema of temas">
-              <strong>{{ tema }}</strong>
+              <strong>{{ tema }} </strong>
+              <strong>{{ id }} </strong>
+                <button matMiniFab> <!--(click)="deletarTema()"> -->
+                <mat-icon>delete</mat-icon>
+              </button>
             </li>
           </ol>
         </div>
