@@ -28,7 +28,7 @@ export class CronometroService {
     return this.http.post(this.apiUrl + 'Tema', objeto);
   }
 
-  // deletarTema(id: number) : Observable<any> {
-  //   return this.http.delete(this.apiUrl + 'Tema', id);
-  // }
+  deletarTema(id: number) : Observable<any> {
+    return this.http.delete(`${this.apiUrl}Tema/${id}`);
+  }
 }
