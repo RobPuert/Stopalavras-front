@@ -14,7 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class ConfiguracoesComponent {
   tempo: number | null = null;
-  temas: string[] = [];
+  temas: { id: number, titulo: string }[] = [];
 
   constructor(private cronometroService: CronometroService) {}
 
@@ -31,21 +31,11 @@ export class ConfiguracoesComponent {
     });
   };
 
-  onClickTemas() {
-    this.cronometroService.chamarTemas().subscribe({
-      next: (res) => {
-        console.log('Resposta da API:', res);
-        this.temas = [];
-        // Espera-se um array com varios objetos contendo 'id' e 'titulo'
-        if (Array.isArray(res) && res.length > 0) {
-          res.forEach(element => {
-              this.temas?.push(element.titulo);
-          });
-        };
-      },
-      error: (err) => console.error('Erro na API:', err),
-    });
-  }
+  onClickTemas(): void {
+  this.cronometroService.chamarTemas().subscribe((resposta) => {
+    this.temas = resposta;
+  });
+}
 
   segundos: number = 0;
   mensagem: string = '';
@@ -64,11 +54,10 @@ export class ConfiguracoesComponent {
     this.titulo = '';
   }
 
-  // deletarTema() {  this.cronometroService.deletarTema(this.id).subscribe({
-  //     next: (res) => {
-  //       console.log(this.id);
-  //     },
-  //     error: (err) => console.error('Erro na API:', err),
-  //   });
-  // }
+  deletarTema(id: number): void {
+    console.log(id);
+  this.cronometroService.deletarTema(id).subscribe(() => {
+    this.temas = this.temas.filter(tema => tema.id !== id);
+  });
+}
 }

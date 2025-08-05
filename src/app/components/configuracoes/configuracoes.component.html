@@ -9,59 +9,62 @@
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Header com logo e título -->
   <section class="container">
     <div class="top-content">
       <img routerLink="/home" src="assets/images/stop_sign.png" alt="Placa de Stop" class="stop-sign">
       <h1 class="title">Stopalavras</h1>
     </div>
   </section>
+
+  <!-- Seção principal de botões e formulários -->
   <section class="buttons-container">
-    <div>
+
+    <!-- Cronômetro -->
+    <div class="section">
       <button (click)="onClickCronometro()" class="botao-cronometro">Cronômetro</button>
       <div *ngIf="tempo !== null" class="exibicao-cronometro">
         Tempo do cronômetro: <strong>{{ tempo }} segundos</strong>
       </div>
     </div>
-    <div>
+
+    <!-- Formulário de definição de tempo -->
+    <div class="section">
       <button class="botao-definir">Definir Cronômetro</button>
-      <div class="form">
-        <form (ngSubmit)="salvar()">
-          <label for="segundos">Segundos: </label>
-          <br><br>
-          <input required id="segundos" [(ngModel)]="segundos" type="number" name="segundos" placeholder="Digite um número inteiro">
-          <br><br>
-          <button type="submit" class="botao-salvar">Salvar</button>
-        </form>
+      <form (ngSubmit)="salvar()" class="form">
+        <label for="segundos">Segundos:</label>
+        <input required id="segundos" [(ngModel)]="segundos" type="number" name="segundos" placeholder="Digite um número inteiro">
+        <button type="submit" class="botao-salvar">Salvar</button>
         <p *ngIf="mensagem">{{ mensagem }}</p>
-      </div>
+      </form>
     </div>
-    <div>
+
+    <!-- Lista de temas -->
+    <div class="section">
       <button (click)="onClickTemas()" class="botao-temas">Temas</button>
       <div *ngIf="temas.length > 0" class="exibicao-tema">
-        Temas cadastrados:
-          <ol>
-            <li *ngFor="let tema of temas">
-              <strong>{{ tema }} </strong>
-              <strong>{{ id }} </strong>
-                <button matMiniFab> <!--(click)="deletarTema()"> -->
-                <mat-icon>delete</mat-icon>
-              </button>
-            </li>
-          </ol>
-        </div>
+        <h3>Temas cadastrados:</h3>
+        <ol>
+          <li *ngFor="let tema of temas">
+            <span class="titulo-tema">{{ tema.titulo }}</span>
+            <button matMiniFab color="warn" (click)="deletarTema(tema.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </li>
+        </ol>
       </div>
-      <div>
-        <button class="botao-definir">Cadastrar Tema</button>
-        <div class="form">
-          <form (ngSubmit)="salvarTema()">
-            <label for="search_field">Digite um tema: </label>
-            <br><br>
-            <input required id="criar-tema" [(ngModel)]="titulo" type="text" name="criar-tema" placeholder="Evite temas já existentes">
-            <br><br>
-            <button class="botao-salvar">Salvar</button>
-          </form>
-        </div>
     </div>
+
+    <!-- Formulário de cadastro de novo tema -->
+    <div class="section">
+      <button class="botao-definir">Cadastrar Tema</button>
+      <form (ngSubmit)="salvarTema()" class="form">
+        <label for="criar-tema">Digite um tema:</label>
+        <input required id="criar-tema" [(ngModel)]="titulo" type="text" name="criar-tema" placeholder="Evite temas já existentes">
+        <button class="botao-salvar">Salvar</button>
+      </form>
+    </div>
+
   </section>
 </body>
 </html>
